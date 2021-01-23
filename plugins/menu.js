@@ -79,19 +79,19 @@ let handler  = async (m, { conn, usedPrefix: _p }) => {
     let replace = {
       '%': '%',
       p: _p, uptime,
-      exp, limit, name, weton, week, date, time, totalreg,
+      exp, limite, nome, weton, semana, data, hora, totalreg,
       readmore: readMore
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).join`|`})`, 'g'), (_, name) => replace[name])
     conn.reply(m.chat, text.trim(), m)
   } catch (e) {
     conn.reply(m.chat, 'Maaf, menu sedang error', m)
-    throw e
+    jogue e
   }
 }
-handler.help = ['menu','help','?']
+handler.help = ['menu','help','?',xandinho']
 handler.tags = ['main']
-handler.command = /^(menu|help|\?)$/i
+handler.command = /^(menu|help|xandinho|\?)$/i
 handler.owner = false
 handler.mods = false
 handler.premium = false
