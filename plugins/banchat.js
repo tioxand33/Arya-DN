@@ -1,8 +1,8 @@
 let handler = async (m, { conn, participants }) => {
   if (participants.map(v=>v.jid).includes(global.conn.user.jid)) {
     global.DATABASE._data.chats[m.chat].isBanned = true
-    m.reply('Done, Berhasil Banned User!')
-  } else m.reply('Ada nomor host disini...')
+    m.reply('Pronto, usuário banido do Grupo KSKSKSKSKKS!')
+  } else m.reply('Há um número de gost aqui...')
 }
 handler.help = ['banchat']
 handler.tags = ['owner']
