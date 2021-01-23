@@ -46,7 +46,7 @@ setInterval(async () => {
   if (JSON.stringify(global.DATABASE.data) == lastJSON) conn.logger.info('Database is up to date')
   else {
     global.DATABASE.save()
-    conn.logger.info('Concluído salvar banco de dados!')
+    conn.logger.info('Done saving database!')
     lastJSON = JSON.stringify(global.DATABASE.data)
   }
 }, 60 * 1000) // Save every minute
@@ -146,11 +146,11 @@ conn.handler = async function (m) {
         }
 
         m.isCommand = true
-        let xp = 'exp' no plugin ? parseInt(plugin.exp) : 9
-        if (xp > 99) m.reply('Aperto -_-')
+        let xp = 'exp' in plugin ? parseInt(plugin.exp) : 9
+        if (xp > 99) m.reply('Ngecit -_-')
         else m.exp += xp
         if (!isPrems && global.DATABASE._data.users[m.sender].limit < 1 && plugin.limit) {
-          this.reply(m.chat, `Seu limite aumentou, por favor, compre via *${usedPrefix}buy*`, m)
+          this.reply(m.chat, `Limit anda habis, silahkan beli melalui *${usedPrefix}buy*`, m)
           continue
         }
         try {
@@ -173,7 +173,7 @@ conn.handler = async function (m) {
           console.log(e)
           this.reply(m.chat, util.format(e), m)
         } finally {
-          if (m.limit == true) this.reply(m.chat, '1 Limite se aplica', m)
+          if (m.limit == true) this.reply(m.chat, '1 Limit terpakai', m)
         }
   			break
   		}
@@ -199,13 +199,13 @@ global.prems = []
 
 global.dfail = (type, m, conn) => {
   let msg = {
-    owner: 'Este comando só pode ser usado pelo proprietário do número!',
-    mods: 'Este comando só pode ser usado por moderadores!',
-    premium: 'Este comando é apenas para membros Premium!',
-    group: 'Este comando só pode ser usado em grupos!',
-    private: 'Este comando só pode ser usado em Chats Privados!',
-    admin: 'Este comando é apenas para administradores de grupo!',
-    botAdmin: 'Torne o bot um administrador para usar este comando!'
+    owner: 'Perintah ini hanya dapat digunakan oleh Owner Nomor!',
+    mods: 'Perintah ini hanya dapat digunakan oleh Moderator!',
+    premium: 'Perintah ini hanya untuk member Premium!',
+    group: 'Perintah ini hanya dapat digunakan di grup!',
+    private: 'Perintah ini hanya dapat digunakan di Chat Pribadi!',
+    admin: 'Perintah ini hanya untuk admin grup!',
+    botAdmin: 'Jadikan bot sebagai admin untuk menggunakan perintah ini!'
   }[type]
   msg && conn.reply(m.chat, msg, m)
 }
@@ -245,7 +245,7 @@ global.reload = (event, filename) => {
       }
     } else conn.logger.info(`requiring new plugin '${dir}'`)
     let err = syntaxerror(fs.readFileSync(dir))
-    if (err) conn.logger.error(`erro de sintaxe ao carregar '${dir}'\n${err}`)
+    if (err) conn.logger.error(`syntax error while loading '${dir}'\n${err}`)
     else try {
       global.plugins[filename] = require(dir)
     } catch (e) {
